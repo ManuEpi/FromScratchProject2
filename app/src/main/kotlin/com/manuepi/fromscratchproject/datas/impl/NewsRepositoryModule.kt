@@ -12,7 +12,7 @@ import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(ActivityRetainedComponent::class)
@@ -30,13 +30,11 @@ class NewsRepositoryModule {
 
     @ActivityRetainedScoped
     @Provides
-    fun providesNewsNetwork(
-        okHttpClient: OkHttpClient
-    ): NewsNetwork {
+    fun providesNewsNetwork(): NewsNetwork {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
-            .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create())
+            .client(OkHttpClient())
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NewsNetwork::class.java)
     }

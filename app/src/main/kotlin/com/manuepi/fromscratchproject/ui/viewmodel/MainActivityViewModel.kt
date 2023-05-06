@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.manuepi.fromscratchproject.asLiveData
+import com.manuepi.fromscratchproject.datas.di.DispatchersNames
 import com.manuepi.fromscratchproject.domain.NewsUseCaseImpl
 import com.manuepi.fromscratchproject.domain.model.NewsUseCaseStateModel
 import com.manuepi.fromscratchproject.setState
@@ -15,10 +16,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import javax.inject.Named
 
 @HiltViewModel
 class MainActivityViewModel @Inject constructor(
-    private val dispatcher: CoroutineDispatcher,
+    @Named(DispatchersNames.UI_VIEW_MODEL) private val dispatcher: CoroutineDispatcher,
     private val newsUseCaseImpl: NewsUseCaseImpl,
     private val newsMapperUiModel: NewsMapperUiModel
 ) : ViewModel() {
@@ -58,8 +60,7 @@ class MainActivityViewModel @Inject constructor(
         _viewState.asLiveData()
     }
 
-    fun onItemClicked(item: NewsItemUiModel)
-    {
+    fun onItemClicked(item: NewsItemUiModel) {
 
     }
 }

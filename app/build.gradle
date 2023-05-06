@@ -8,10 +8,11 @@ buildscript {
 }
 
 plugins {
+    id 'kotlin-android'
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -39,11 +40,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = '17'
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 }
 
@@ -66,13 +67,14 @@ dependencies {
 
     // Dagger Hilt dependencies injection
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
-    implementation "com.google.dagger:hilt-android:2.44"
+    implementation "com.google.dagger:hilt-android:2.43.2"
     kapt "com.google.dagger:hilt-android-compiler:2.43.2"
 
     // Network
+    // Network
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
-    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
 
     // Timber
@@ -80,6 +82,8 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil:$coil_version"
+
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
 }
 
 kapt {
