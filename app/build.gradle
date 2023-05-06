@@ -1,7 +1,9 @@
 buildscript {
     ext {
-        hilt_version = '2.44'
+        hilt_version = '2.43.2'
         retrofit_version = '2.9.0'
+        timber_version = '5.0.1'
+        coil_version = '1.1.1'
     }
 }
 
@@ -41,14 +43,16 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17
+        jvmTarget = '17'
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.10.0'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation "androidx.activity:activity-ktx:1.7.1"
+    implementation "androidx.fragment:fragment-ktx:1.5.7"
+    implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
@@ -56,11 +60,26 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
-    // Hilt dependency injection
-    implementation "com.google.dagger:hilt-android:$hilt_version"
-    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+    // Lifecycle
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
 
+    // Dagger Hilt dependencies injection
+    implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
+    implementation "com.google.dagger:hilt-android:2.44"
+    kapt "com.google.dagger:hilt-android-compiler:2.43.2"
+
+    // Network
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+
+    // Timber
+    implementation "com.jakewharton.timber:timber:$timber_version"
+
+    // Coil
+    implementation "io.coil-kt:coil:$coil_version"
 }
 
 kapt {
