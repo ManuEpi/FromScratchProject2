@@ -71,7 +71,6 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.43.2"
 
     // Network
-    // Network
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
@@ -82,10 +81,6 @@ dependencies {
 
     // Coil
     implementation "io.coil-kt:coil:$coil_version"
-
-    // Flipper
-    implementation 'com.facebook.flipper:flipper-network-plugin:0.176.1'
-    implementation 'com.facebook.flipper:flipper:0.176.1'
 
     // To debug dependency injection issue
     implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
