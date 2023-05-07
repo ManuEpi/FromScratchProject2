@@ -1,6 +1,6 @@
 package com.manuepi.fromscratchproject.ui.models
 
-data class NewsUiStateResponseModel(
+data class NewsUiStateModel(
     val state: State = State.Init
 ) {
     sealed class State {

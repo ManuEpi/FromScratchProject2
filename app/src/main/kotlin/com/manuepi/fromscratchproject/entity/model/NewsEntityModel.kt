@@ -1,5 +1,10 @@
 package com.manuepi.fromscratchproject.entity.model
 
+data class NewsEntityModel(
+    val status: String?,
+    val totalResults: Int?,
+    val articles: List<NewsItemEntityModel>
+)
 data class NewsItemEntityModel(
     val source: NewsItemSourceEntityModel?,
     val author: String?,

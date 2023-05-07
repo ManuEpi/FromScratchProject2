@@ -1,4 +1,4 @@
-package com.manuepi.fromscratchproject.datas.impl
+package com.manuepi.fromscratchproject.datas.di
 
 import com.manuepi.fromscratchproject.datas.NewsRepository
 import com.manuepi.fromscratchproject.datas.impl.api.NewsApi

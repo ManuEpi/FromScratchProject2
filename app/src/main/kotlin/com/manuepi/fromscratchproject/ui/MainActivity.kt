@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.manuepi.fromscratchproject.R
 import com.manuepi.fromscratchproject.databinding.ActivityMainBinding
 import com.manuepi.fromscratchproject.ui.adapter.AdapterNews
-import com.manuepi.fromscratchproject.ui.models.NewsUiStateResponseModel
+import com.manuepi.fromscratchproject.ui.models.NewsUiStateModel
 import com.manuepi.fromscratchproject.ui.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.onResume()
+    }
+
     private fun createNewFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.activity_main_container, NewsDetailFragment())
@@ -51,24 +56,24 @@ class MainActivity : AppCompatActivity() {
 
     private fun initObservers() {
         viewModel.viewState.observe(this) { uiState ->
-            when (val state = uiState.state) {
-                NewsUiStateResponseModel.State.Failure -> {
+            when (uiState) {
+                NewsUiStateModel.State.Failure -> {
                     // no-op
                 }
-                NewsUiStateResponseModel.State.Init -> {
+                NewsUiStateModel.State.Init -> {
                     // no-op
                 }
-                NewsUiStateResponseModel.State.Loading -> {
+                NewsUiStateModel.State.Loading -> {
                     // no-op
                 }
-                is NewsUiStateResponseModel.State.Success -> {
+                is NewsUiStateModel.State.Success -> {
                     binding.activityMainTitle.apply {
                         text =
-                            "Nous vous avons trouvé ${state.model.totalResults ?: 0} résultats pour le mot bitcoin"
+                            "Nous vous avons trouvé ${uiState.model.totalResults ?: 0} résultats pour le mot bitcoin"
                         contentDescription =
-                            "Nous vous avons trouvé ${state.model.totalResults ?: 0} résultats pour le mot bitcoin"
+                            "Nous vous avons trouvé ${uiState.model.totalResults ?: 0} résultats pour le mot bitcoin"
                     }
-                    adapterNews.items = state.model.articles
+                    adapterNews.items = uiState.model.articles
                 }
             }
         }

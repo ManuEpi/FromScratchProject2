@@ -1,35 +1,35 @@
 package com.manuepi.fromscratchproject.domain.mapper
 
-import com.manuepi.fromscratchproject.datas.models.NewsItemSourceRepositoryResponseModel
-import com.manuepi.fromscratchproject.datas.models.NewsRepositoryResponseModel
-import com.manuepi.fromscratchproject.datas.models.NewsRepositoryStateResponseModel
 import com.manuepi.fromscratchproject.domain.model.NewsItemSourceUseCaseModel
 import com.manuepi.fromscratchproject.domain.model.NewsItemUseCaseModel
 import com.manuepi.fromscratchproject.domain.model.NewsUseCaseModel
 import com.manuepi.fromscratchproject.domain.model.NewsUseCaseStateModel
+import com.manuepi.fromscratchproject.entity.model.NewsEntityModel
 import com.manuepi.fromscratchproject.entity.model.NewsItemEntityModel
 import com.manuepi.fromscratchproject.entity.model.NewsItemSourceEntityModel
+import com.manuepi.fromscratchproject.entity.model.NewsStateEntityModel
 import org.jetbrains.annotations.VisibleForTesting
 import javax.inject.Inject
 
 class NewsUseCaseMapper @Inject constructor() {
-    fun mapNewsRepoToUseCase(news: NewsRepositoryStateResponseModel): NewsUseCaseStateModel =
+    fun mapNewsEntityToUseCase(news: NewsStateEntityModel): NewsUseCaseStateModel =
         when (news) {
-            NewsRepositoryStateResponseModel.Failure -> {
+            NewsStateEntityModel.Failure -> {
                 NewsUseCaseStateModel.Failure
             }
 
-            is NewsRepositoryStateResponseModel.Success -> NewsUseCaseStateModel.Success(
-                model = mapRepositoryResponseToUseCase(news.model)
+            is NewsStateEntityModel.Success -> NewsUseCaseStateModel.Success(
+                model = mapEntityNewsToUseCase(news.model)
             )
+            NewsStateEntityModel.NotSet -> NewsUseCaseStateModel.NotSet
         }
 
     @VisibleForTesting
-    internal fun mapRepositoryResponseToUseCase(response: NewsRepositoryResponseModel): NewsUseCaseModel =
+    internal fun mapEntityNewsToUseCase(model: NewsEntityModel): NewsUseCaseModel =
         NewsUseCaseModel(
-            status = response.status,
-            totalResults = response.totalResults,
-            articles = response.articles.map { article ->
+            status = model.status,
+            totalResults = model.totalResults,
+            articles = model.articles.map { article ->
                 NewsItemUseCaseModel(
                     source = article.source?.let { mapItemSource(source = it) },
                     author = article.author,
@@ -45,7 +45,7 @@ class NewsUseCaseMapper @Inject constructor() {
         )
 
     @VisibleForTesting
-    internal fun mapItemSource(source: NewsItemSourceRepositoryResponseModel): NewsItemSourceUseCaseModel =
+    internal fun mapItemSource(source: NewsItemSourceEntityModel): NewsItemSourceUseCaseModel =
         NewsItemSourceUseCaseModel(
             id = source.id,
             name = source.name
