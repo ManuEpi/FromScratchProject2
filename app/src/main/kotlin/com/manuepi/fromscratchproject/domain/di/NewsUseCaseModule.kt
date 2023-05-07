@@ -8,6 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 
+/**
+ * Dependency Injection for usecase in order to include it as parameter
+ */
 @Module
 @InstallIn(ActivityRetainedComponent::class)
 abstract class NewsUseCaseModule {

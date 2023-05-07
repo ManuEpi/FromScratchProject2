@@ -38,48 +38,15 @@ class MainActivityViewModel @Inject constructor(
             }
         }.asLiveData(Dispatchers.IO)
 
-    /*private val _viewState = MutableLiveData(NewsUiStateModel())
-    val viewState: LiveData<NewsUiStateModel> by lazy {
-        viewModelScope.launch(Dispatchers.IO) {
-            newsUseCase.itemsModel.map {
-                when (val state = it) {
-                    NewsUseCaseStateModel.Failure -> {
-                        _viewState.setState { actualViewState ->
-                            actualViewState.copy(
-                                state = NewsUiStateModel.State.Failure
-                            )
-                        }
-                    }
-                    is NewsUseCaseStateModel.Success -> {
-                        _viewState.setState { actualViewState ->
-                            actualViewState.copy(
-                                state = NewsUiStateModel.State.Success(
-                                    model = newsMapperUiModel.mapUseCaseResponseToUi(
-                                        response = state.model
-                                    )
-                                )
-                            )
-                        }
-                    }
-                    NewsUseCaseStateModel.NotSet -> {
-                        _viewState.setState { actualViewState ->
-                            actualViewState.copy(
-                                state = NewsUiStateModel.State.Loading
-                            )
-                        }
-                    }
-                }
-            }
-        }
-        _viewState.asLiveData()
-    }*/
-
-    fun onResume() {
+    fun getNews() {
         viewModelScope.launch(Dispatchers.IO) {
             newsUseCase.getNews()
         }
     }
 
+    /**
+     * This method will be triggered when user click on a news, to update entity
+     */
     fun updateSelectedNews(newsItem: NewsItemUiModel) {
         viewModelScope.launch(Dispatchers.IO) {
             newsUseCase.updateSelectedNews(newsMapperUiModel.mapUiToUseCase(uiModel = newsItem))

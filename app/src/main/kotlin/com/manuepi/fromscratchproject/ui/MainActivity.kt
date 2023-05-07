@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
         initRecyclerview()
         initObservers()
+        viewModel.getNews()
     }
 
     private fun initRecyclerview() {
@@ -44,7 +45,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.onResume()
     }
 
     private fun createNewFragment() {

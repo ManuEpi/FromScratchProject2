@@ -8,6 +8,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Dependency Injection for entity in order to include it as parameter
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class NewsItemEntityModule {

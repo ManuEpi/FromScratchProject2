@@ -14,10 +14,16 @@ class NewsEntityImpl @Inject constructor() : NewsEntity {
     internal val _itemsModel = MutableStateFlow<NewsStateEntityModel>(NewsStateEntityModel.NotSet)
     override val itemsModel = _itemsModel.asStateFlow()
 
+    /**
+     * Updating [_selectedItem] value
+     */
     override suspend fun onItemSelected(newItem: NewsItemEntityModel) {
         _selectedItem.value = newItem
     }
 
+    /**
+     * Updating [_itemsModel] value
+     */
     override suspend fun onItemsLoaded(itemsModel: NewsStateEntityModel) {
         _itemsModel.value = itemsModel
     }

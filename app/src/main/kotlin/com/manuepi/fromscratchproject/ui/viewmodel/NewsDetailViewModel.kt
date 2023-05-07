@@ -2,7 +2,6 @@ package com.manuepi.fromscratchproject.ui.viewmodel
 
 import androidx.lifecycle.*
 import com.manuepi.fromscratchproject.domain.NewsUseCase
-import com.manuepi.fromscratchproject.domain.NewsUseCaseImpl
 import com.manuepi.fromscratchproject.ui.mappers.NewsMapperUiModel
 import com.manuepi.fromscratchproject.ui.models.NewsItemUiModel
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -14,6 +14,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Dependency Injection for api, repository and network in order to include them as parameters
+ */
 @Module
 @InstallIn(ActivityRetainedComponent::class)
 class NewsRepositoryModule {

@@ -2,6 +2,9 @@ package com.manuepi.fromscratchproject.datas.impl.api.models
 
 import com.google.gson.annotations.SerializedName
 
+/**
+ * Api Model for News
+ */
 data class NewsApiResponseModel(
     @SerializedName("status") val status: String?,
     @SerializedName("totalResults") val totalResults: Int?,

@@ -27,18 +27,6 @@ class NewsMapperRepositoryModel @Inject constructor() {
         }
     }
 
-    fun mapNewsToEntity(repositoryModel: NewsRepositoryStateResponseModel): NewsStateEntityModel {
-        return when (repositoryModel) {
-            is NewsRepositoryStateResponseModel.Failure -> {
-                NewsStateEntityModel.Failure
-            }
-
-            is NewsRepositoryStateResponseModel.Success -> {
-                NewsStateEntityModel.Success(model = mapNewsItemsToEntity(data = repositoryModel.model))
-            }
-        }
-    }
-
     @VisibleForTesting
     internal fun mapNewsItemsToRepository(data: NewsApiResponseModel): NewsRepositoryResponseModel =
         NewsRepositoryResponseModel(
@@ -65,6 +53,18 @@ class NewsMapperRepositoryModel @Inject constructor() {
             id = source.id,
             name = source.name
         )
+
+    fun mapNewsToEntity(repositoryModel: NewsRepositoryStateResponseModel): NewsStateEntityModel {
+        return when (repositoryModel) {
+            is NewsRepositoryStateResponseModel.Failure -> {
+                NewsStateEntityModel.Failure
+            }
+
+            is NewsRepositoryStateResponseModel.Success -> {
+                NewsStateEntityModel.Success(model = mapNewsItemsToEntity(data = repositoryModel.model))
+            }
+        }
+    }
 
     @VisibleForTesting
     internal fun mapNewsItemsToEntity(data: NewsRepositoryResponseModel): NewsEntityModel =
