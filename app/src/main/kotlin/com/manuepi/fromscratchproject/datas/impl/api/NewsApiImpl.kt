@@ -16,6 +16,6 @@ class NewsApiImpl @Inject constructor(
 
     override suspend fun getNews(): NetworkResponse<NewsApiResponseModel> =
         safeApiCall {
-            newsNetwork.getNews(apiKey = apiKey)
+            newsNetwork.getNews(apiKey = apiKey, q = "bitcoin")
         }
 }

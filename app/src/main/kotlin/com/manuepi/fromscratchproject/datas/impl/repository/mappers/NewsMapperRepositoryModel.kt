@@ -30,7 +30,7 @@ class NewsMapperRepositoryModel @Inject constructor() {
             totalResults = data.totalResults,
             articles = data.articles.map { article ->
                 NewsItemRepositoryResponseModel(
-                    source = mapItemSource(source = article.source),
+                    source = article.source?.let { mapItemSource(source = it) },
                     author = article.author,
                     title = article.title,
                     description = article.description,

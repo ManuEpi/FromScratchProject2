@@ -4,11 +4,12 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.manuepi.fromscratchproject.R
 import com.manuepi.fromscratchproject.databinding.ActivityMainBinding
 import com.manuepi.fromscratchproject.ui.adapter.AdapterNews
+import com.manuepi.fromscratchproject.ui.models.NewsUiStateResponseModel
 import com.manuepi.fromscratchproject.ui.viewmodel.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -34,29 +35,49 @@ class MainActivity : AppCompatActivity() {
         binding.activityMainRecyclerview.let { recyclerView ->
             recyclerView.layoutManager = LinearLayoutManager(this)
             recyclerView.adapter = adapterNews
-            adapterNews.onItemClicked = {
-                //supportFragmentManager.beginTransaction()
-                  //  .add(binding.root, DemoFragment(), "SOMETAG").commitAllowingStateLoss()
-                viewModel.onItemClicked(item = it)
+            adapterNews.onItemClicked = { newsItem ->
+                viewModel.updateSelectedNews(newsItem)
+                createNewFragment()
             }
         }
     }
 
+    private fun createNewFragment() {
+        supportFragmentManager.beginTransaction()
+            .add(R.id.activity_main_container, NewsDetailFragment())
+            .addToBackStack("newsDetail")
+            .commit()
+    }
+
     private fun initObservers() {
         viewModel.viewState.observe(this) { uiState ->
-            Timber.e(uiState.state.toString())
-            /*when (uiState.state)
-            {
-                NewsUiStateResponseModel.State.Failure -> TODO()
-                NewsUiStateResponseModel.State.Init -> TODO()
-                NewsUiStateResponseModel.State.Loading -> TODO()
-                is NewsUiStateResponseModel.State.Success -> TODO()
-            }*/
+            when (val state = uiState.state) {
+                NewsUiStateResponseModel.State.Failure -> {
+                    // no-op
+                }
+                NewsUiStateResponseModel.State.Init -> {
+                    // no-op
+                }
+                NewsUiStateResponseModel.State.Loading -> {
+                    // no-op
+                }
+                is NewsUiStateResponseModel.State.Success -> {
+                    binding.activityMainTitle.apply {
+                        text =
+                            "Nous vous avons trouvé ${state.model.totalResults ?: 0} résultats pour le mot bitcoin"
+                        contentDescription =
+                            "Nous vous avons trouvé ${state.model.totalResults ?: 0} résultats pour le mot bitcoin"
+                    }
+                    adapterNews.items = state.model.articles
+                }
+            }
         }
     }
 
     override fun onDestroy() {
+        binding.activityMainRecyclerview.adapter = null
         _binding = null
+        adapterNews.onItemClicked = null
         super.onDestroy()
     }
 }
