@@ -21,9 +21,9 @@ Création d'un projet from scratch qui a pour but de récupérer une liste de ne
     
     - Entity -> Stockage de la donnée séléctionnée, afin de l'avoir sur l'écran de détail simplement via un Flow, sans avoir a passer des paramètres entre les écrans
     
-La partie UI demande à récuperer de manière asynchrone la liste de news, elle va contacter la partie USECASE qui elle va contacter la partie REPOSITORY. Et ensuite le REPOSITORY va donner l'info au USECASE qui va le redescendre à la partie UI, application donc de la "Separation of Concerns"
+    La partie UI demande à récuperer de manière asynchrone la liste de news, elle va contacter la partie USECASE qui elle va contacter la partie REPOSITORY. Et ensuite le REPOSITORY va donner l'info au USECASE qui va le redescendre à la partie     UI, application donc de la "Separation of Concerns"
 
-J'ai choisi cette architecture car c'est celle que je maîtrise le mieux et que bien que redondante (car création de nombreux fichiers), la clean architecture est respectée.
+    J'ai choisi cette architecture car c'est celle que je maîtrise le mieux et que bien que redondante (car création de nombreux fichiers), la clean architecture est respectée.
 
 
 3) Problèmes rencontrés : 
