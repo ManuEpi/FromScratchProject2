@@ -1,3 +1,5 @@
+package com.manuepi.fromscratchproject
+
 import io.mockk.MockKAnnotations
 import org.junit.rules.MethodRule
 import org.junit.runners.model.FrameworkMethod

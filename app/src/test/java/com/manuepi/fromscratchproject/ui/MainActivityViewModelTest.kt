@@ -1,7 +1,6 @@
 package com.manuepi.fromscratchproject.ui
 
-import MockkRule
-import com.manuepi.fromscratchproject.datas.NewsRepository
+import com.manuepi.fromscratchproject.MockkRule
 import com.manuepi.fromscratchproject.datas.impl.repository.mappers.NewsMapperRepositoryModel
 import com.manuepi.fromscratchproject.domain.NewsUseCaseImpl
 import com.manuepi.fromscratchproject.domain.mapper.NewsUseCaseMapper

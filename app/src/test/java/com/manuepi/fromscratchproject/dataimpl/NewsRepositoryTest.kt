@@ -1,6 +1,6 @@
 package com.manuepi.fromscratchproject.dataimpl
 
-import MockkRule
+import com.manuepi.fromscratchproject.MockkRule
 import com.google.common.truth.Truth
 import com.manuepi.fromscratchproject.NetworkResponse
 import com.manuepi.fromscratchproject.datas.impl.api.NewsApi

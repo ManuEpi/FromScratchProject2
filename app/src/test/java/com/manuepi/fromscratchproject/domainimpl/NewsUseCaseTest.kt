@@ -7,7 +7,7 @@ import com.manuepi.fromscratchproject.domain.NewsUseCaseImpl
 import com.manuepi.fromscratchproject.domain.mapper.NewsUseCaseMapper
 import com.manuepi.fromscratchproject.entity.NewsEntity
 import io.mockk.coVerify
-import MockkRule
+import com.manuepi.fromscratchproject.MockkRule
 import com.google.common.truth.Truth
 import com.manuepi.fromscratchproject.datas.impl.repository.mappers.NewsMapperRepositoryModel
 import com.manuepi.fromscratchproject.datas.models.NewsRepositoryStateResponseModel
