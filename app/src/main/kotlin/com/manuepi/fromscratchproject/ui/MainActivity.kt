@@ -43,10 +43,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-    }
-
     private fun createNewFragment() {
         supportFragmentManager.beginTransaction()
             .add(R.id.activity_main_container, NewsDetailFragment())
