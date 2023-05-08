@@ -10,5 +10,9 @@ import retrofit2.http.Query
  */
 interface NewsNetwork {
     @GET("/v2/everything")
-    suspend fun getNews(@Query("apiKey", encoded= true) apiKey: String, @Query("q", encoded= true) q: String): Response<NewsApiResponseModel>
+    suspend fun getNews(
+        @Query("apiKey", encoded = true) apiKey: String,
+        @Query("q", encoded = true) q: String,
+        @Query("language", encoded = true) language: String
+    ): Response<NewsApiResponseModel>
 }

@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
+import java.util.Locale
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -43,8 +44,9 @@ class NewsUseCaseImpl @Inject constructor(
     override suspend fun getNews() {
         withContext(Dispatchers.IO)
         {
+            val language = Locale.getDefault().language
             // We get response from repository
-            val news = newsRepository.getNews()
+            val news = newsRepository.getNews(language = language)
 
             // And then we update our entity, that will be listened by [itemsModel]
             newsEntity.onItemsLoaded(newsMapperRepositoryModel.mapNewsToEntity(repositoryModel = news))

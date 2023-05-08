@@ -22,6 +22,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.util.Locale
 
 /**
  * Unit test for useCase
@@ -82,7 +83,9 @@ class NewsUseCaseTest {
             )
         )
 
-        coEvery { repository.getNews() } returns NewsRepositoryStateResponseModel.Success(
+        val language = Locale.getDefault().language
+
+        coEvery { repository.getNews(language = language) } returns NewsRepositoryStateResponseModel.Success(
             model = data
         )
 
@@ -119,7 +122,9 @@ class NewsUseCaseTest {
     @Test
     fun `useCase should not get news and update entity with failure`() = runBlocking {
 
-        coEvery { repository.getNews() } returns NewsRepositoryStateResponseModel.Failure
+        val language = Locale.getDefault().language
+
+        coEvery { repository.getNews(language = language) } returns NewsRepositoryStateResponseModel.Failure
 
         useCase.getNews()
 

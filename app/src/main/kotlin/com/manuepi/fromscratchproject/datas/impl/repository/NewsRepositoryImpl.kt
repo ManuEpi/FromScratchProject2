@@ -10,9 +10,9 @@ class NewsRepositoryImpl @Inject constructor(
     private val newsApi: NewsApi,
     private val newsMapperRepositoryModel: NewsMapperRepositoryModel
 ) : NewsRepository {
-    override suspend fun getNews(): NewsRepositoryStateResponseModel {
+    override suspend fun getNews(language: String): NewsRepositoryStateResponseModel {
         // We get response from service
-        val response = newsApi.getNews()
+        val response = newsApi.getNews(language = language)
 
         // And we return it to our usecase
         return newsMapperRepositoryModel.mapNewsToRepository(response)

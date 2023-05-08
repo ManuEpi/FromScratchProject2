@@ -15,6 +15,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import java.util.Locale
 
 /**
  * Unit test for repository
@@ -64,12 +65,14 @@ class NewsRepositoryTest {
                 )
             )
         )
+        
+        val language = Locale.getDefault().language
 
-        coEvery { api.getNews() } returns NetworkResponse.Success(
+        coEvery { api.getNews(language = language) } returns NetworkResponse.Success(
             data = data
         )
 
-        val response = repository.getNews()
+        val response = repository.getNews(language = language)
 
         Truth.assertThat(response).isInstanceOf(NewsRepositoryStateResponseModel.Success::class.java)
         Truth.assertThat((response as NewsRepositoryStateResponseModel.Success).model.status).isEqualTo(data.status)
@@ -84,9 +87,11 @@ class NewsRepositoryTest {
     @Test
     fun `getNews should get news from service with error`() = runBlocking {
 
-        coEvery { api.getNews() } returns NetworkResponse.Error(message = "Une erreur est survenue")
+        val language = Locale.getDefault().language
 
-        val response = repository.getNews()
+        coEvery { api.getNews(language = language) } returns NetworkResponse.Error(message = "Une erreur est survenue")
+
+        val response = repository.getNews(language = language)
 
         Truth.assertThat(response)
             .isInstanceOf(NewsRepositoryStateResponseModel.Failure::class.java)
