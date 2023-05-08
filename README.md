@@ -1,5 +1,6 @@
 # FromScratchProject
 Création d'un projet from scratch qui a pour but de récupérer une liste de news via une API (https://newsapi.org/), l'afficher, et permettre de cliquer sur un élément afin d'y voir son détail
+La liste s'affiche dans la langue définie sur le téléphone de l'utilisateur
 
 1) Utilisation des librairies : 
 
