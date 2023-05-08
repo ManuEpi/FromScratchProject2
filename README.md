@@ -25,12 +25,13 @@ Création d'un projet from scratch qui a pour but de récupérer une liste de ne
 
     J'ai choisi cette architecture car c'est celle que je maîtrise le mieux et que bien que redondante (car création de nombreux fichiers), la clean architecture est respectée.
 
+3) Ajout des tests unitaires
 
-3) Problèmes rencontrés : 
+4) Problèmes rencontrés : 
     - Très gros soucis avec Android Studio Flamingo et l'injection de dépendances, j'ai eu des problèmes dans mes modules et j'y ai perdu pas mal de temps !
     - Quelques soucis avec NewsApi car il fallait passer le paramètre "q" et je pensais qu'il fallait uniquement l'apiKey
     
-4) Améliorations possibles envisagées mais non inclues :
+5) Améliorations possibles envisagées mais non inclues :
     - Mise en place de Shimmer pour ajouter un chargement lors de l'affichage de la liste
     - Stockage dans l'entité de la liste de news
 
