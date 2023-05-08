@@ -15,11 +15,11 @@ Création d'un projet from scratch qui a pour but de récupérer une liste de ne
 
     - DATA - Data-impl -> Récupération de la data reçu par l'appel de service à l'API
     
-    - DOMAIN - Domain-impl -> Traitement de la donnée
+    - DOMAIN - Domain-impl -> Traitement de la donnée en remplissage de l'entité
     
     - UI -> ViewModel et Ecrans -> Récupération de la data depuis la partie Domain, et affichage de celle-ci
     
-    - Entity -> Stockage de la donnée séléctionnée, afin de l'avoir sur l'écran de détail simplement via un Flow, sans avoir a passer des paramètres entre les écrans
+    - Entity -> Stockage de la liste d'élément ainsi que de la donnée séléctionné, afin de l'avoir sur l'écran de détail simplement via un Flow, sans avoir a passer des paramètres entre les écrans
     
     La partie UI demande à récuperer de manière asynchrone la liste de news, elle va contacter la partie USECASE qui elle va contacter la partie REPOSITORY. Et ensuite le REPOSITORY va donner l'info au USECASE qui va le redescendre à la partie     UI, application donc de la "Separation of Concerns"
 
