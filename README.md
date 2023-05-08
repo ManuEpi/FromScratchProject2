@@ -33,7 +33,7 @@ Création d'un projet from scratch qui a pour but de récupérer une liste de ne
     
 5) Améliorations possibles envisagées mais non inclues :
     - Mise en place de Shimmer pour ajouter un chargement lors de l'affichage de la liste
-    - Stockage dans l'entité de la liste de news
+    - Amélioration globale du code et des méthodes
 
 
 Temps passé : environ 10 heures
