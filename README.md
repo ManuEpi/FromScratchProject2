@@ -29,7 +29,6 @@ La liste s'affiche dans la langue définie sur le téléphone de l'utilisateur
 3) Ajout des tests unitaires
 
 4) Problèmes rencontrés : 
-    - Très gros soucis avec Android Studio Flamingo et l'injection de dépendances, j'ai eu des problèmes dans mes modules et j'y ai perdu pas mal de temps !
     - Quelques soucis avec NewsApi car il fallait passer le paramètre "q" et je pensais qu'il fallait uniquement l'apiKey
     
 5) Améliorations possibles envisagées mais non inclues :
